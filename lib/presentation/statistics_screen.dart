@@ -233,6 +233,9 @@ class _UnitStatisticsState extends State<UnitStatistics>
         if (state.initData) {
           initData(state.period);
         }
+        if (_lastPeriodUnits.isEmpty) {
+          return Container();
+        }
         return CardCover(
           child: Padding(
             padding: const EdgeInsets.all(10).copyWith(right: 5),
