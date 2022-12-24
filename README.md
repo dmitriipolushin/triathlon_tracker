@@ -1,5 +1,9 @@
 # Triathlon tracker
 
+![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
+![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)
+
 ## Description
 
 The idea of Triathlon Tracker app is to help people to get ready for triathlon distances. It tracks the progress of your trainings, show the progress in overall milage one ready to do the distance.

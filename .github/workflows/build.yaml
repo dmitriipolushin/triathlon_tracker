@@ -1,7 +1,7 @@
 name: Check formating, linting, tests, and build apk
 on:
     push:
-      branches: [build_app]
+      branches: [master]
 
 
 jobs:
@@ -27,8 +27,8 @@ jobs:
         run: flutter format --set-exit-if-changed .
       - name: analyze
         run: dart analyze --fatal-infos
-      # - name: run tests
-      #   run: flutter test
+      - name: run tests
+        run: flutter test tests/widget_test.dart
       - name: build apk
         run: flutter build apk
       - uses: actions/upload-artifact@v1
