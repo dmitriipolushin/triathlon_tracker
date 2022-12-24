@@ -158,19 +158,17 @@ class TrainingsIndicator extends ConsumerWidget {
           context,
           title: S.of(context).enter_training,
           hintText: '$currentProgress',
-        ).then(
-          (value) {
-            if (value != null) {
-              ref.read(trainingsManagerProvider).addTraining(
-                    sportType,
-                    Training(
-                      distance: double.parse(value),
-                      dateTime: DateTime.now(),
-                    ),
-                  );
-            }
-          },
-        );
+        ).then((value) {
+          if (value != null) {
+            ref.read(trainingsManagerProvider).addTraining(
+                  sportType,
+                  Training(
+                    distance: double.parse(value),
+                    dateTime: DateTime.now().toString(),
+                  ),
+                );
+          }
+        });
       },
       child: Container(
         color: Colors.transparent,
@@ -253,95 +251,96 @@ Future<String?> showValueWindow(
     ),
     isScrollControlled: true,
     backgroundColor: Colors.white,
-    builder: (ctx) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20).copyWith(
-          bottom: MediaQuery.of(ctx).viewInsets.bottom,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const SizedBox(height: 16),
-            Container(
-              width: 70,
-              height: 5,
-              alignment: Alignment.center,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(100),
+    builder: (_) {
+      return IntrinsicHeight(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+          ),
+          child: Column(
+            children: [
+              const SizedBox(height: 16),
+              Container(
+                width: 70,
+                height: 5,
+                alignment: Alignment.center,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(100),
+                  ),
+                  color: Color(0xFFD6D7E4),
                 ),
-                color: Color(0xFFD6D7E4),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 20,
-                bottom: 24,
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 20,
+                  bottom: 24,
+                ),
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    color: Color(0xFF40445C),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ),
-              child: Text(
-                title,
+              TextFormField(
+                controller: valueController,
+                keyboardType: TextInputType.number,
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.digitsOnly
+                ],
                 style: const TextStyle(
-                  color: Color(0xFF40445C),
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-            TextFormField(
-              controller: valueController,
-              keyboardType: TextInputType.number,
-              inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.digitsOnly
-              ],
-              style: const TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.w400,
-                color: Color(0xFF40445C),
-              ),
-              cursorColor: const Color(0xFF4A4999),
-              decoration: InputDecoration(
-                isDense: false,
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 14,
-                  vertical: 10,
-                ),
-                hintText: '$hintText ${S.of(context).km}',
-                hintStyle: const TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w400,
                   color: Color(0xFF40445C),
                 ),
-                focusedBorder: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                  borderSide: BorderSide(
-                    color: Color(0xFF4A4999),
-                    width: 2,
+                cursorColor: const Color(0xFF4A4999),
+                decoration: InputDecoration(
+                  isDense: false,
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 10,
+                  ),
+                  hintText: '$hintText ${S.of(context).km}',
+                  hintStyle: const TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xFF40445C),
+                  ),
+                  focusedBorder: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                    borderSide: BorderSide(
+                      color: Color(0xFF4A4999),
+                      width: 2,
+                    ),
+                  ),
+                  border: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                    borderSide: BorderSide(color: Color(0xFFD6D7E4)),
                   ),
                 ),
-                border: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                  borderSide: BorderSide(color: Color(0xFFD6D7E4)),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 40,
+                  bottom: 30,
+                ),
+                child: AppButton(
+                  onPressed: () {
+                    if (valueController.text.isEmpty) {
+                      Navigator.of(globalContext!).pop(hintText);
+                    } else {
+                      Navigator.of(globalContext!).pop(
+                        valueController.text,
+                      );
+                    }
+                  },
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 40,
-                bottom: 30,
-              ),
-              child: AppButton(
-                onPressed: () {
-                  if (valueController.text.isEmpty) {
-                    Navigator.of(globalContext!).pop(hintText);
-                  } else {
-                    Navigator.of(globalContext!).pop(
-                      valueController.text,
-                    );
-                  }
-                },
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
     },

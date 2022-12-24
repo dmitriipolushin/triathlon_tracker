@@ -23,7 +23,7 @@ mixin _$Training {
   @HiveField(0)
   double get distance => throw _privateConstructorUsedError;
   @HiveField(1)
-  DateTime get dateTime => throw _privateConstructorUsedError;
+  String get dateTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $TrainingCopyWith<$Res> {
   factory $TrainingCopyWith(Training value, $Res Function(Training) then) =
       _$TrainingCopyWithImpl<$Res, Training>;
   @useResult
-  $Res call({@HiveField(0) double distance, @HiveField(1) DateTime dateTime});
+  $Res call({@HiveField(0) double distance, @HiveField(1) String dateTime});
 }
 
 /// @nodoc
@@ -63,7 +63,7 @@ class _$TrainingCopyWithImpl<$Res, $Val extends Training>
       dateTime: null == dateTime
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
     ) as $Val);
   }
 }
@@ -75,7 +75,7 @@ abstract class _$$_TrainingCopyWith<$Res> implements $TrainingCopyWith<$Res> {
       __$$_TrainingCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@HiveField(0) double distance, @HiveField(1) DateTime dateTime});
+  $Res call({@HiveField(0) double distance, @HiveField(1) String dateTime});
 }
 
 /// @nodoc
@@ -100,7 +100,7 @@ class __$$_TrainingCopyWithImpl<$Res>
       dateTime: null == dateTime
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
     ));
   }
 }
@@ -121,7 +121,7 @@ class _$_Training implements _Training {
   final double distance;
   @override
   @HiveField(1)
-  final DateTime dateTime;
+  final String dateTime;
 
   @override
   String toString() {
@@ -160,7 +160,7 @@ class _$_Training implements _Training {
 abstract class _Training implements Training {
   factory _Training(
       {@HiveField(0) required final double distance,
-      @HiveField(1) required final DateTime dateTime}) = _$_Training;
+      @HiveField(1) required final String dateTime}) = _$_Training;
 
   factory _Training.fromJson(Map<String, dynamic> json) = _$_Training.fromJson;
 
@@ -169,7 +169,7 @@ abstract class _Training implements Training {
   double get distance;
   @override
   @HiveField(1)
-  DateTime get dateTime;
+  String get dateTime;
   @override
   @JsonKey(ignore: true)
   _$$_TrainingCopyWith<_$_Training> get copyWith =>

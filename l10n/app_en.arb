@@ -17,5 +17,8 @@
     "welcome":"Welcome",
     "greetings": "We are glad you joined us! Let's get acquainted",
     "your_name_is": "Your name is",
-    "enter_your_name": "Enter your name"
+    "enter_your_name": "Enter your name",
+    "day" : "Day",
+    "week" : "Week",
+    "month" : "Month"
 }

@@ -62,7 +62,7 @@ class TrainingAdapter extends TypeAdapter<_$_Training> {
     };
     return _$_Training(
       distance: fields[0] as double,
-      dateTime: fields[1] as DateTime,
+      dateTime: fields[1] as String,
     );
   }
 
@@ -93,11 +93,11 @@ class TrainingAdapter extends TypeAdapter<_$_Training> {
 
 _$_Training _$$_TrainingFromJson(Map<String, dynamic> json) => _$_Training(
       distance: (json['distance'] as num).toDouble(),
-      dateTime: DateTime.parse(json['dateTime'] as String),
+      dateTime: json['dateTime'] as String,
     );
 
 Map<String, dynamic> _$$_TrainingToJson(_$_Training instance) =>
     <String, dynamic>{
       'distance': instance.distance,
-      'dateTime': instance.dateTime.toIso8601String(),
+      'dateTime': instance.dateTime,
     };

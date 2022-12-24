@@ -88,6 +88,7 @@ class _OnBoardingMainScreenState extends State<OnBoardingMainScreen> {
                           children: [
                             if (_currentIndex != _totalScreens) ...[
                               GestureDetector(
+                                key: const ValueKey('arrow_back'),
                                 onTap: () {
                                   _moveBackByTap();
                                 },

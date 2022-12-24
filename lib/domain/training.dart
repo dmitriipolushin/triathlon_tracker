@@ -12,7 +12,7 @@ class Training with _$Training {
   @HiveType(typeId: 1)
   factory Training({
     @HiveField(0) required double distance,
-    @HiveField(1) required DateTime dateTime,
+    @HiveField(1) required String dateTime,
   }) = _Training;
 
   factory Training.fromJson(Map<String, dynamic> json) =>

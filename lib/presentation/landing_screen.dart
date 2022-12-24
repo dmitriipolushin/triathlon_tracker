@@ -54,6 +54,7 @@ class _LandingScreenState extends State<LandingScreen> {
                 children: [
                   SvgPicture.asset(
                     'assets/icons/home.svg',
+                    key: const ValueKey('home_tab_icon'),
                     height: 24,
                     color: _index == 0
                         ? const Color(0xFF707880)
@@ -72,6 +73,7 @@ class _LandingScreenState extends State<LandingScreen> {
                 children: [
                   SvgPicture.asset(
                     'assets/icons/stats.svg',
+                    key: const ValueKey('stats_tab_icon'),
                     height: 24,
                     color: _index == 1
                         ? const Color(0xFF707880)

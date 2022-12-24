@@ -29,12 +29,10 @@ class StatisticsBloc extends Bloc<StatisticsEvent, StatisticsState> {
           ),
         ) {
     on<StatisticsEvent>(
-      (event, emit) => emit(
-        StatisticsState(
-          period: event.period,
-          initData: event.initData,
-        ),
-      ),
+      (event, emit) => emit(StatisticsState(
+        period: event.period,
+        initData: event.initData,
+      )),
     );
   }
 }

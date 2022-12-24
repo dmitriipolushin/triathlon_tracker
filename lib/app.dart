@@ -27,7 +27,7 @@ class App extends ConsumerWidget {
     return ScreenUtilInit(
       designSize: const Size(414, 896),
       minTextAdapt: true,
-      builder: (BuildContext context, Widget? child) {
+      builder: (context, child) {
         return MaterialApp(
           theme: AppTheme.theme(themeColor, colors),
           localizationsDelegates: [
