@@ -1,0 +1,4 @@
+ignore:
+  - "test/*"
+  - "lib/core/*"
+  - "lib/domain/*"
