@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "132591887004",
+    "project_id": "triathlon-tra",
+    "storage_bucket": "triathlon-tra.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132591887004:android:cefc6dcfcccf2f78454359",
+        "android_client_info": {
+          "package_name": "com.example.triathlon_tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "132591887004-pq224g1heffcphoo7da8utldd57uuecm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGh0otok839veUJ3yw87neAOQ2dERG4pI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "132591887004-pq224g1heffcphoo7da8utldd57uuecm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

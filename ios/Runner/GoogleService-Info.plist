@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>132591887004-8l3j6cnc5o5t01h6gev764h1ttd9uk6c.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.132591887004-8l3j6cnc5o5t01h6gev764h1ttd9uk6c</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBAW7Qc72cWE-t6kps1Y-cqYe0l-9R8nF0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>132591887004</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.triathlonTracker</string>
+	<key>PROJECT_ID</key>
+	<string>triathlon-tra</string>
+	<key>STORAGE_BUCKET</key>
+	<string>triathlon-tra.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:132591887004:ios:92a5cdb376d713cc454359</string>
+</dict>
+</plist>

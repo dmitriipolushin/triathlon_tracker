@@ -1,0 +1,21 @@
+{
+    "triathlon": "Triathlon",
+    "swimming": "Swimming",
+    "cycling": "Cycling",
+    "running": "Running",
+    "sprint": "Sprint",
+    "olympic": "Olympic",
+    "o2": "O2",
+    "half_ironman": "half ironman",
+    "log":"Log",
+    "continue_": "Continue",
+    "enter_training": "Enter tour training",
+    "km": "km",
+    "save": "Save",
+    "distance_question": "Which distance do you preparing to?",
+    "distance_explanation": "We need this to provide you the goals that you need to achive to be prepared for the distance. You can change it later in Settings",
+    "welcome":"Welcome",
+    "greetings": "We are glad you joined us! Let's get acquainted",
+    "your_name_is": "Your name is",
+    "enter_your_name": "Enter your name"
+}

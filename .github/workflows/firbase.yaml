@@ -1,0 +1,29 @@
+name: Builds dev flavor in release mode and distributes to firebase
+on:
+    push:
+      branches: [firebase_release]
+      paths-ignore:
+        - '**/README.md'
+
+
+jobs:
+  build_and_deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - run: flutter clean
+      - run: flutter pub get
+      - run: flutter build apk --release --flavor prod --multidex -t lib/main_prod.dart
+      - uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{secrets.FIREBASE_APP_ID}}
+          token: ${{secrets.FIREBASE_TOKEN}}
+          file: build/app/outputs/flutter-apk/app-prod-release.apk
