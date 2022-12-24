@@ -15,7 +15,7 @@ class GoalsLocalStorage {
   }
 
   bool get hasData => box.isNotEmpty;
-  
+
   Goals? get data => hasData ? box.values.first : null;
 }
 

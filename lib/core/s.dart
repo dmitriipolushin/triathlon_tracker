@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 final localeProvider = StateProvider<Locale>((ref) {
   final systemLocale = Platform.localeName.substring(0, 2);
   return S.supportedLocales.firstWhere(
@@ -28,7 +27,7 @@ class S {
   const S._();
 }
 
-class StaticS{
+class StaticS {
   static late AppLocalizations _loc;
 
   static AppLocalizations get loc => StaticS._loc;

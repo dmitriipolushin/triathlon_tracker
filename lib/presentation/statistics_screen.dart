@@ -49,93 +49,98 @@ class _StatisticsScreenState extends ConsumerState<StatisticsScreen> {
     }).toList();
     return BlocProvider(
       create: (context) => _statisticsBloc,
-      child: Builder(builder: (context) {
-        return Scaffold(
-          backgroundColor: const Color(0xFFE0F0FF),
-          body: SafeArea(
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      width: double.infinity,
-                      child: CupertinoSlidingSegmentedControl(
-                        children: {
-                          StatisticsPeriod.day: Text(
-                            S.of(context).day,
-                            style: AppStyles.heading13.copyWith(
-                              color: _chosenPeriod == StatisticsPeriod.day
-                                  ? Colors.white
-                                  : const Color(0xFF7E8298),
+      child: Builder(
+        builder: (context) {
+          return Scaffold(
+            backgroundColor: const Color(0xFFE0F0FF),
+            body: SafeArea(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: double.infinity,
+                        child: CupertinoSlidingSegmentedControl(
+                          children: {
+                            StatisticsPeriod.day: Text(
+                              S.of(context).day,
+                              style: AppStyles.heading13.copyWith(
+                                color: _chosenPeriod == StatisticsPeriod.day
+                                    ? Colors.white
+                                    : const Color(0xFF7E8298),
+                              ),
                             ),
-                          ),
-                          StatisticsPeriod.week: Text(
-                            S.of(context).week,
-                            style: AppStyles.heading13.copyWith(
+                            StatisticsPeriod.week: Text(
+                              S.of(context).week,
+                              style: AppStyles.heading13.copyWith(
                                 color: _chosenPeriod == StatisticsPeriod.week
                                     ? Colors.white
-                                    : const Color(0xFF7E8298)),
-                          ),
-                          StatisticsPeriod.month: Text(
-                            S.of(context).month,
-                            style: AppStyles.heading13.copyWith(
+                                    : const Color(0xFF7E8298),
+                              ),
+                            ),
+                            StatisticsPeriod.month: Text(
+                              S.of(context).month,
+                              style: AppStyles.heading13.copyWith(
                                 color: _chosenPeriod == StatisticsPeriod.month
                                     ? Colors.white
-                                    : const Color(0xFF7E8298)),
-                          )
-                        },
-                        groupValue: _chosenPeriod,
-                        thumbColor: AppColors.primaryColor,
-                        backgroundColor:
-                            const Color.fromRGBO(255, 83, 94, 0.04),
-                        onValueChanged: (StatisticsPeriod? val) {
-                          if (val != null) {
-                            BlocProvider.of<StatisticsBloc>(context).add(
-                                StatisticsEvent(period: val, initData: true));
-                            setState(
-                              () {
-                                _chosenPeriod = val;
-                              },
-                            );
-                          }
-                        },
+                                    : const Color(0xFF7E8298),
+                              ),
+                            )
+                          },
+                          groupValue: _chosenPeriod,
+                          thumbColor: AppColors.primaryColor,
+                          backgroundColor:
+                              const Color.fromRGBO(255, 83, 94, 0.04),
+                          onValueChanged: (StatisticsPeriod? val) {
+                            if (val != null) {
+                              BlocProvider.of<StatisticsBloc>(context).add(
+                                StatisticsEvent(period: val, initData: true),
+                              );
+                              setState(
+                                () {
+                                  _chosenPeriod = val;
+                                },
+                              );
+                            }
+                          },
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 24),
-                    Column(
-                      children: [
-                        if (_swimmingData.isNotEmpty) ...[
-                          UnitStatistics(
-                            data: _swimmingData,
-                            title: S.of(context).swimming,
-                          ),
-                          const SizedBox(height: 24),
+                      const SizedBox(height: 24),
+                      Column(
+                        children: [
+                          if (_swimmingData.isNotEmpty) ...[
+                            UnitStatistics(
+                              data: _swimmingData,
+                              title: S.of(context).swimming,
+                            ),
+                            const SizedBox(height: 24),
+                          ],
+                          if (_cyclingData.isNotEmpty) ...[
+                            UnitStatistics(
+                              data: _cyclingData,
+                              title: S.of(context).cycling,
+                            ),
+                            const SizedBox(height: 24),
+                          ],
+                          if (_runningData.isNotEmpty) ...[
+                            UnitStatistics(
+                              data: _runningData,
+                              title: S.of(context).running,
+                            ),
+                            const SizedBox(height: 24),
+                          ]
                         ],
-                        if (_cyclingData.isNotEmpty) ...[
-                          UnitStatistics(
-                            data: _cyclingData,
-                            title: S.of(context).cycling,
-                          ),
-                          const SizedBox(height: 24),
-                        ],
-                        if (_runningData.isNotEmpty) ...[
-                          UnitStatistics(
-                            data: _runningData,
-                            title: S.of(context).running,
-                          ),
-                          const SizedBox(height: 24),
-                        ]
-                      ],
-                    ),
-                  ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        );
-      }),
+          );
+        },
+      ),
     );
   }
 }
@@ -214,9 +219,11 @@ class _UnitStatisticsState extends State<UnitStatistics>
 
     for (int i = 0; i < _lastPeriodUnits.length; i++) {
       _spots.add(FlSpot(i.toDouble(), _lastPeriodUnits[i].amount));
-      _yAxis.add(((_lastPeriodUnits[i].amount - minValue) *
-              (44 * 3 / (maxValue - minValue))) +
-          43);
+      _yAxis.add(
+        ((_lastPeriodUnits[i].amount - minValue) *
+                (44 * 3 / (maxValue - minValue))) +
+            43,
+      );
     }
     if (_lastPeriodUnits.length > 1) {
       _axisStep = (MediaQuery.of(context).size.width - 93.6) /
@@ -266,11 +273,15 @@ class _UnitStatisticsState extends State<UnitStatistics>
                                     List.generate(_lastPeriodUnits.length, (i) {
                                   if (_currentPeriod == StatisticsPeriod.week) {
                                     final day = DateFormat('MMMd').format(
-                                        DateTime.parse(
-                                            _lastPeriodUnits[i].time));
-                                    return Text(day,
-                                        style: AppStyles.subtitle12
-                                            .copyWith(fontSize: 11.sp));
+                                      DateTime.parse(
+                                        _lastPeriodUnits[i].time,
+                                      ),
+                                    );
+                                    return Text(
+                                      day,
+                                      style: AppStyles.subtitle12
+                                          .copyWith(fontSize: 11.sp),
+                                    );
                                   } else if (_currentPeriod ==
                                       StatisticsPeriod.month) {
                                     final condition =
@@ -282,8 +293,10 @@ class _UnitStatisticsState extends State<UnitStatistics>
                                                 : true;
                                     if (condition) {
                                       final day = DateFormat('d').format(
-                                          DateTime.parse(
-                                              _lastPeriodUnits[i].time));
+                                        DateTime.parse(
+                                          _lastPeriodUnits[i].time,
+                                        ),
+                                      );
                                       return Padding(
                                         padding: EdgeInsets.only(
                                           right:
@@ -302,16 +315,20 @@ class _UnitStatisticsState extends State<UnitStatistics>
                                     }
                                   } else {
                                     final time = DateFormat('kk:mm').format(
-                                        DateTime.parse(
-                                            _lastPeriodUnits[i].time));
+                                      DateTime.parse(
+                                        _lastPeriodUnits[i].time,
+                                      ),
+                                    );
                                     final condition =
                                         _lastPeriodUnits.length > 7
                                             ? i % 3 == 0
                                             : true;
                                     return condition
-                                        ? Text(time,
+                                        ? Text(
+                                            time,
                                             style: AppStyles.subtitle12
-                                                .copyWith(fontSize: 11.sp))
+                                                .copyWith(fontSize: 11.sp),
+                                          )
                                         : Container();
                                   }
                                 }).toList(),
@@ -371,8 +388,10 @@ class _UnitStatisticsState extends State<UnitStatistics>
       space: 10.0,
       child: value != maxValue + (interval < 1 ? 0.01 : 0.1) &&
               value != minValue - (interval < 1 ? 0.01 : 0.1)
-          ? Text('${value.toInt()}',
-              style: AppStyles.subtitle12.copyWith(fontSize: 11.sp))
+          ? Text(
+              '${value.toInt()}',
+              style: AppStyles.subtitle12.copyWith(fontSize: 11.sp),
+            )
           : Container(),
     );
   }
@@ -392,15 +411,21 @@ class _UnitStatisticsState extends State<UnitStatistics>
               }
               _controllers[_chosenItem].forward();
               _previousItem = _chosenItem;
-              BlocProvider.of<StatisticsBloc>(context).add(StatisticsEvent(
-                  period: _currentPeriod ?? StatisticsPeriod.day));
+              BlocProvider.of<StatisticsBloc>(context).add(
+                StatisticsEvent(
+                  period: _currentPeriod ?? StatisticsPeriod.day,
+                ),
+              );
             } else {
               _controllers[_chosenItem].reverse();
               _chosenItem = -1;
               _previousItem = -1;
               _currentDx = -1;
-              BlocProvider.of<StatisticsBloc>(context).add(StatisticsEvent(
-                  period: _currentPeriod ?? StatisticsPeriod.day));
+              BlocProvider.of<StatisticsBloc>(context).add(
+                StatisticsEvent(
+                  period: _currentPeriod ?? StatisticsPeriod.day,
+                ),
+              );
             }
           }
         },
@@ -414,9 +439,10 @@ class _UnitStatisticsState extends State<UnitStatistics>
         verticalInterval: 1,
         getDrawingHorizontalLine: (value) {
           return FlLine(
-              color: const Color(0xFFD6D7E4),
-              strokeWidth: 1,
-              dashArray: [2, 4]);
+            color: const Color(0xFFD6D7E4),
+            strokeWidth: 1,
+            dashArray: [2, 4],
+          );
         },
         getDrawingVerticalLine: (value) {
           return FlLine(
@@ -428,20 +454,21 @@ class _UnitStatisticsState extends State<UnitStatistics>
         show: true,
         rightTitles: AxisTitles(
           sideTitles: SideTitles(
-              showTitles: true,
-              reservedSize: 10,
-              getTitlesWidget: (val, meta) => Container()),
+            showTitles: true,
+            reservedSize: 10,
+            getTitlesWidget: (val, meta) => Container(),
+          ),
         ),
         topTitles: AxisTitles(
           sideTitles: SideTitles(showTitles: false),
         ),
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
-              showTitles: true,
-              reservedSize: 22,
-              interval: 1,
-              getTitlesWidget: (val, meta) => Container() //bottomTitleWidgets,
-              ),
+            showTitles: true,
+            reservedSize: 22,
+            interval: 1,
+            getTitlesWidget: (val, meta) => Container(), //bottomTitleWidgets
+          ),
         ),
         leftTitles: AxisTitles(
           sideTitles: SideTitles(
@@ -470,18 +497,19 @@ class _UnitStatisticsState extends State<UnitStatistics>
           barWidth: 2,
           isStrokeCapRound: true,
           dotData: FlDotData(
-              show: true,
-              getDotPainter: (spot, percent, barData, index) {
-                return FlDotCirclePainter(
-                  radius: 3,
-                  color: Colors.white,
-                  strokeWidth: 3,
-                  strokeColor: const Color(0xFF4A4999),
-                );
-              },
-              checkToShowDot: (spot, barData) {
-                return spot.x == _currentDx;
-              }),
+            show: true,
+            getDotPainter: (spot, percent, barData, index) {
+              return FlDotCirclePainter(
+                radius: 3,
+                color: Colors.white,
+                strokeWidth: 3,
+                strokeColor: const Color(0xFF4A4999),
+              );
+            },
+            checkToShowDot: (spot, barData) {
+              return spot.x == _currentDx;
+            },
+          ),
           shadow: Shadow(
             color: const Color(0xFFFF9CBA).withOpacity(0.4),
             blurRadius: 4,

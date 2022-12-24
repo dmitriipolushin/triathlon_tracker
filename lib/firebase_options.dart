@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '132591887004',
     projectId: 'triathlon-tra',
     storageBucket: 'triathlon-tra.appspot.com',
-    iosClientId: '132591887004-8l3j6cnc5o5t01h6gev764h1ttd9uk6c.apps.googleusercontent.com',
+    iosClientId:
+        '132591887004-8l3j6cnc5o5t01h6gev764h1ttd9uk6c.apps.googleusercontent.com',
     iosBundleId: 'com.example.triathlonTracker',
   );
 }

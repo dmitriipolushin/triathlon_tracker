@@ -132,7 +132,6 @@ void main() {
                 locale: const Locale('en'),
               );
             },
-            
           ),
         ),
       );
@@ -176,7 +175,6 @@ void main() {
                 locale: const Locale('en'),
               );
             },
-            
           ),
         ),
       );
@@ -217,7 +215,6 @@ void main() {
                 locale: const Locale('en'),
               );
             },
-            
           ),
         ),
       );

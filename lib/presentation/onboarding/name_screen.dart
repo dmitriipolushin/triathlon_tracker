@@ -28,7 +28,7 @@ class NameScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 24, bottom: 36),
             child: Text(
-             S.of(context).your_name_is,
+              S.of(context).your_name_is,
               style: const TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.w700,
