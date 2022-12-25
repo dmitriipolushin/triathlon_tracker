@@ -28,7 +28,7 @@ jobs:
       - name: Analyze
         run: dart analyze --fatal-infos
       - name: Run tests
-        run: flutter test --coverage .
+        run: flutter test --coverage . && coverage report --fail-under=80
       - name: Upload to codecov
         uses: codecov/codecov-action@v1.0.2
         with:
