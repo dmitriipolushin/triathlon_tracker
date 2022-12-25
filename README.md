@@ -37,8 +37,9 @@ To submit a pull request, follow the fork-and-pull workflow:
 
 1. Fork the repository to your personal account
 2. Create a new branch and make your changes on that branch
-3. Push your changes to your forked repository
-4. Submit a pull request from your branch to the upstream repository
+3. Write widget tests for your new feature. If test coverage will be less then 80% pull request can't be merged
+4. Push your changes to your forked repository
+5. Submit a pull request from your branch to the upstream repository
 
 If your pull request will pass all checks and will be approved with our team it will be merged in our project
 
