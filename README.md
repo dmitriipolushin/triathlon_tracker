@@ -14,14 +14,12 @@ The idea of Triathlon Tracker app is to help people to get ready for triathlon d
 
 The list of screens in the app: onboarding screens, main screen, three similar screens to fill training information, settings screen, statistic screen
 
-# Code Requirements
+# Code Features
 
 - [x] Networking (Firebase, Crashlytics)
 - [x] UI separated from logic
 - [x] Code is formatted
-- [x] Build successfuly for iOS
-- [x] More than three screens
-- [x] one field for text input
+- [x] Build successfuly for Android and iOS
 
 # Screenshots of the app
 
@@ -32,6 +30,18 @@ The list of screens in the app: onboarding screens, main screen, three similar s
 # Build for iOS
 
 ![app](/readme_assetes/app_ios.png)
+
+# Contribution
+
+To submit a pull request, follow the fork-and-pull workflow:
+
+1. Fork the repository to your personal account
+2. Create a new branch and make your changes on that branch
+3. Push your changes to your forked repository
+4. Submit a pull request from your branch to the upstream repository
+
+If your pull request will pass all checks and will be approved with our team it will be merged in our project
+
 
 # APK Link
 
