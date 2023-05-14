@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:triathlon_tracker/bloc/sign_in/sign_in_bloc.dart';
+import 'package:triathlon_tracker/bloc/sign_up/sign_up_bloc.dart';
 import 'package:triathlon_tracker/core/app_theme.dart';
 import 'package:triathlon_tracker/core/s.dart';
 import 'package:triathlon_tracker/core/style.dart';
+import 'package:triathlon_tracker/injection.dart';
 import 'package:triathlon_tracker/presentation/landing_screen.dart';
 import 'package:triathlon_tracker/presentation/onboarding/onboarding_main_screen.dart';
+import 'package:triathlon_tracker/presentation/sign_up_screen.dart';
 import 'package:triathlon_tracker/state_holders/personal_info_state_holder/personal_info_state.dart';
 
 class App extends ConsumerWidget {
@@ -24,23 +29,33 @@ class App extends ConsumerWidget {
           data: (goals, profile) => true,
         );
 
-    return ScreenUtilInit(
-      designSize: const Size(414, 896),
-      minTextAdapt: true,
-      builder: (context, child) {
-        return MaterialApp(
-          theme: AppTheme.theme(themeColor, colors),
-          localizationsDelegates: [
-            S.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: S.supportedLocales,
-          locale: locale,
-          home: isLogged ? const LandingScreen() : const OnBoardingMainScreen(),
-        );
-      },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt.get<SignInBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt.get<SignUpBloc>(),
+        ),
+      ],
+      child: ScreenUtilInit(
+        designSize: const Size(414, 896),
+        minTextAdapt: true,
+        builder: (context, child) {
+          return MaterialApp(
+            theme: AppTheme.theme(themeColor, colors),
+            localizationsDelegates: [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.supportedLocales,
+            locale: locale,
+            home: isLogged ? const SignUpScreen() : const OnBoardingMainScreen(),
+          );
+        },
+      ),
     );
   }
 }

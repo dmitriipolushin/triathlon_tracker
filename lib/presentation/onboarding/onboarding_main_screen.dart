@@ -10,6 +10,7 @@ import 'package:triathlon_tracker/presentation/onboarding/custom_button.dart';
 import 'package:triathlon_tracker/presentation/onboarding/custom_progress_bar.dart';
 import 'package:triathlon_tracker/presentation/onboarding/name_screen.dart';
 import 'package:triathlon_tracker/presentation/onboarding/options_screen.dart';
+import 'package:triathlon_tracker/presentation/sign_up_screen.dart';
 
 class OnBoardingMainScreen extends StatefulWidget {
   const OnBoardingMainScreen({Key? key}) : super(key: key);
@@ -181,11 +182,13 @@ class _OnBoardingMainScreenState extends State<OnBoardingMainScreen> {
                                             ),
                                           );
                                       if (_currentIndex == _totalScreens - 1) {
-                                        Navigator.of(context).push(
+                                        Navigator.of(context)
+                                            .pushAndRemoveUntil(
                                           CupertinoPageRoute(
                                             builder: (context) =>
-                                                const LandingScreen(),
+                                                const SignUpScreen(),
                                           ),
+                                          (route) => false,
                                         );
                                       } else {
                                         _moveForward();

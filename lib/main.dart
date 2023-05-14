@@ -3,8 +3,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:injectable/injectable.dart';
 import 'package:triathlon_tracker/app.dart';
 import 'package:triathlon_tracker/core/error_handler.dart';
+import 'package:triathlon_tracker/core/logger.dart';
 import 'package:triathlon_tracker/data/goals_local_storage.dart';
 import 'package:triathlon_tracker/data/profile_local_storage.dart';
 import 'package:triathlon_tracker/data/trainings_local_storage.dart';
@@ -12,6 +14,7 @@ import 'package:triathlon_tracker/domain/goals.dart';
 import 'package:triathlon_tracker/domain/profile.dart';
 import 'package:triathlon_tracker/domain/training.dart';
 import 'package:triathlon_tracker/firebase_options.dart';
+import 'package:triathlon_tracker/injection.dart';
 import 'package:triathlon_tracker/managers/personal_info_manager.dart';
 import 'package:triathlon_tracker/managers/trainings.manager.dart';
 
@@ -22,8 +25,10 @@ void main() {
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       );
+      await configureInjection(Environment.prod);
       final container = ProviderContainer();
       await initHive(container);
+      initLogger();
       container.read(personalInfoManagerProvider).init();
       container.read(trainingsManagerProvider).init();
       runApp(

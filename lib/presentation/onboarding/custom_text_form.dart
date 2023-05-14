@@ -4,11 +4,13 @@ class CustomTextForm extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final int maxLines;
+  final bool obscureText;
   const CustomTextForm({
     Key? key,
     required this.controller,
     required this.hintText,
     this.maxLines = 1,
+    this.obscureText = false,
   }) : super(key: key);
 
   @override
@@ -30,6 +32,7 @@ class CustomTextForm extends StatelessWidget {
         controller: controller,
         keyboardType: TextInputType.name,
         autocorrect: false,
+        obscureText: obscureText,
         autovalidateMode: AutovalidateMode.always,
         textCapitalization: TextCapitalization.words,
         enableInteractiveSelection: false,
