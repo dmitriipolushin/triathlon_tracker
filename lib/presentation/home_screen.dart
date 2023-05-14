@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,6 +7,7 @@ import 'package:triathlon_tracker/core/s.dart';
 import 'package:triathlon_tracker/domain/training.dart';
 import 'package:triathlon_tracker/managers/trainings.manager.dart';
 import 'package:triathlon_tracker/presentation/landing_screen.dart';
+import 'package:triathlon_tracker/presentation/settings_screen.dart';
 import 'package:triathlon_tracker/state_holders/personal_info_state_holder/personal_info_state.dart';
 import 'package:triathlon_tracker/state_holders/trainings_state_holder/trainings_notifier.dart';
 
@@ -25,9 +27,18 @@ class HomeScreen extends ConsumerWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: SvgPicture.asset('assets/icons/user.svg'),
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                CupertinoPageRoute(
+                  builder: (context) => const SettingsScreen(),
+                ),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 16),
+              child: SvgPicture.asset('assets/icons/user.svg'),
+            ),
           ),
         ],
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:triathlon_tracker/presentation/home_screen.dart';
+import 'package:triathlon_tracker/presentation/profile/profile_screen.dart';
 import 'package:triathlon_tracker/presentation/statistics_screen.dart';
 
 BuildContext? globalContext;
@@ -8,6 +9,7 @@ BuildContext? globalContext;
 class LandingScreen extends StatefulWidget {
   static const kHomeScreen = '/home_screen';
   static const kStatisticsScreen = '/statistics_screen';
+  static const kProfileScreen = '/profile_screen';
   const LandingScreen({
     Key? key,
   }) : super(key: key);
@@ -23,10 +25,12 @@ class _LandingScreenState extends State<LandingScreen> {
   final routeNames = {
     0: LandingScreen.kHomeScreen,
     1: LandingScreen.kStatisticsScreen,
+    2: LandingScreen.kProfileScreen,
   };
   final navigatorKeys = {
     0: GlobalKey<NavigatorState>(),
     1: GlobalKey<NavigatorState>(),
+    2: GlobalKey<NavigatorState>(),
   };
 
   @override
@@ -83,6 +87,25 @@ class _LandingScreenState extends State<LandingScreen> {
               ),
             ),
           ),
+          BottomNavigationBarItem(
+            label: '',
+            tooltip: '',
+            icon: Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Column(
+                children: [
+                  SvgPicture.asset(
+                    'assets/icons/profile.svg',
+                    key: const ValueKey('stats_tab_icon'),
+                    height: 24,
+                    color: _index == 2
+                        ? const Color(0xFF707880)
+                        : const Color(0xFFD6D7E4),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
       body: SafeArea(
@@ -91,6 +114,7 @@ class _LandingScreenState extends State<LandingScreen> {
           children: [
             _buildOffstageNavigator(0),
             _buildOffstageNavigator(1),
+            _buildOffstageNavigator(2),
           ],
         ),
       ),
@@ -136,6 +160,7 @@ class TabNavigator extends StatelessWidget {
     return {
       LandingScreen.kHomeScreen: (context) => const HomeScreen(),
       LandingScreen.kStatisticsScreen: (context) => const StatisticsScreen(),
+      LandingScreen.kProfileScreen: (context) => const ProfileScreen(),
     };
   }
 }
